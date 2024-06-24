@@ -1,0 +1,17 @@
+services:
+  code-1:
+    image: collabora/code:latest
+    ports:
+      - 9980:9980
+    restart: always
+    environment:
+      aliasgroup1: http://host.docker.internal:5001
+      username: admin
+      password: zaQ@123456!
+      extra_params: --o:ssl.enable=false
+    networks:
+      - cel-bridge
+
+networks:
+  cel-bridge:
+    driver: bridge
