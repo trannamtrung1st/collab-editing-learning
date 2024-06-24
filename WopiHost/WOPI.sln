@@ -42,8 +42,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WopiHost.Url.Tests", "test\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WopiHost.Core", "src\WopiHost.Core\WopiHost.Core.csproj", "{C456339E-ED69-4A18-873B-5E9DAAC26C8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WopiHost.Cobalt", "src\WopiHost.Cobalt\WopiHost.Cobalt.csproj", "{5195E64C-B991-4B1F-BC5C-8DA3281CB559}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WopiHost.Core.Tests", "test\WopiHost.Core.Tests\WopiHost.Core.Tests.csproj", "{9CBB4AD4-EAE4-4D85-A70C-ECC465DA3D86}"
 EndProject
 Global
