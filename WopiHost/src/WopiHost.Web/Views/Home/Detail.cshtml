@@ -9,10 +9,90 @@
 <span id="frameholder"></span>
 
 <script type="text/javascript">
+
+    function post(msg) {
+        const temp1 = document.getElementById('office_frame').contentWindow;
+        temp1.postMessage(JSON.stringify(msg), '*');
+    }
+
+    function postReady() {
+        post({ 'MessageId': 'Host_PostmessageReady' });
+    }
+
+    function insertText(text) {
+        post({
+            'MessageId': 'Send_UNO_Command',
+            'Values': {
+                'Command': ".uno:EnterString",
+                'Args': {
+                    'StringName': {
+                        'type': 'string',
+                        'value': text
+                    }
+                }
+            }
+        })
+
+    }
+
+    function save() {
+        post({
+            'MessageId': 'Action_Save',
+            'Values': { 'Notify': true, 'ExtendedData': 'CustomFlag=Custom Value;AnotherFlag=AnotherValue' }
+        });
+    }
+
+    function paste(text) {
+        post({
+            'MessageId': 'Action_Paste',
+            'Values': { Mimetype: "text/plain;charset=utf-8", Data: text }
+        })
+    }
+
+    function setCellColor() {
+        post({
+            'MessageId': 'CallPythonScript',
+            'SendTime': Date.now(),
+            'ScriptFile': 'SetCellColor.py',
+            'Function': 'SetCellColor',
+            'Values': null
+        });
+    }
+
+    function insertTimeSeries() {
+        post({
+            'MessageId': 'CallPythonScript',
+            'SendTime': Date.now(),
+            'ScriptFile': 'InsertTimeSeries.py',
+            'Function': 'InsertTimeSeries',
+            'Values': null
+        });
+    }
+
+    function receiveMessage(event) {
+        console.log('==== framed.doc.html receiveMessage: ' + event.data);
+        var msg = JSON.parse(event.data);
+        if (!msg) {
+            return;
+        }
+
+        if (msg.MessageId == 'App_LoadingStatus') {
+            if (msg.Values) {
+                if (msg.Values.Status == 'Document_Loaded') {
+                    postReady();
+                }
+            }
+        }
+    }
+
+    // 'main' code of this <script> block, run when page is being
+    // rendered. Install the message listener.
+    window.addEventListener("message", receiveMessage, false);
+
     var frameholder = document.getElementById('frameholder');
     var office_frame = document.createElement('iframe');
     office_frame.name = 'office_frame';
-    office_frame.id ='office_frame';
+    office_frame.id = 'office_frame';
     // The title should be set for accessibility
     office_frame.title = 'Office Online Frame';
     // This attribute allows true fullscreen mode in slideshow view

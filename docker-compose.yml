@@ -8,7 +8,7 @@ services:
       aliasgroup1: http://host.docker.internal:5001
       username: admin
       password: zaQ@123456!
-      extra_params: --o:ssl.enable=false
+      extra_params: --o:ssl.enable=false --o:security.enable_macros_execution=true --o:security.macro_security_level=1
     networks:
       - cel-bridge
 
