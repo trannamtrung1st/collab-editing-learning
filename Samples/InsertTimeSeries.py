@@ -22,14 +22,17 @@ def InsertTimeSeries():
         start_date = datetime.datetime(2023, 1, 1, 0, 0, 0)  # Starting date
         time_step = datetime.timedelta(minutes=1)  # Time step (1 minute interval)
         num_rows = 10000
+        input = sheet.getCellByPosition(0, 0).getString()
 
         for i in range(num_rows):
+            i = i + 1
             timestamp = start_date + i * time_step
             value = random.uniform(0, 100)  # Random value between 0 and 100
 
             # Insert timestamp into column A and value into column B
             cell_A = sheet.getCellByPosition(0, i)  # Column A, Row i
             cell_B = sheet.getCellByPosition(1, i)  # Column B, Row i
+            cell_C = sheet.getCellByPosition(2, i)  # Column B, Row i
 
             # Convert datetime to a string format
             timestamp_str = timestamp.strftime("%Y-%m-%d %H:%M:%S")
@@ -37,6 +40,7 @@ def InsertTimeSeries():
             # Set cell values
             cell_A.setString(timestamp_str)
             cell_B.setValue(value)
+            cell_C.setString(f"This is input {input}")
 
     else:
         raise Exception("Current document is not a spreadsheet")
