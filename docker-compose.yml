@@ -1,9 +1,14 @@
 services:
   code-1:
-    image: collabora/code:latest
+    image: ce-learning/code:latest
+    build:
+      context: .
+      dockerfile: ./deployments/code/Dockerfile
     ports:
       - 9980:9980
     restart: always
+    volumes:
+      - ./deployments/code/scripts:/opt/collaboraoffice/share/Scripts/python
     environment:
       aliasgroup1: http://host.docker.internal:5001
       username: admin
