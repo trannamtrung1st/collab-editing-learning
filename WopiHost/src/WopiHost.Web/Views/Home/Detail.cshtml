@@ -59,6 +59,17 @@
         });
     }
 
+    function insertToolbar() {
+        post({
+            'MessageId': 'Insert_Button',
+            'Values': {
+                id: 'datasource',
+                imgurl: 'https://www.computerhope.com/jargon/d/database.png',
+                label: 'Data source'
+            }
+        });
+    }
+
     function insertTimeSeries() {
         post({
             'MessageId': 'CallPythonScript',
