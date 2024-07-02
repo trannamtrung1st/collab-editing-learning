@@ -19,8 +19,9 @@
     }
 
     function bind() {
-        const attrName = prompt('Attribute name');
-        insertTimeSeries(attrName);
+        const attribute = prompt('Attribute name');
+        const rows = Number(prompt('No of rows'));
+        insertTimeSeries(attribute, rows);
     }
 
     function postReady() {
@@ -109,7 +110,7 @@
         });
     }
 
-    function insertTimeSeries(attrName) {
+    function insertTimeSeries(attribute, rows) {
         post({
             'MessageId': 'CallPythonScript',
             'SendTime': Date.now(),
@@ -118,7 +119,11 @@
             'Values': {
                 'Attribute': {
                     'type': 'string',
-                    'value': attrName || 'Attribute 1'
+                    'value': attribute || 'Attribute 1'
+                },
+                'Rows': {
+                    'type': 'long',
+                    'value': `${rows || 10000}`
                 }
             }
         });
@@ -138,8 +143,7 @@
                 }
             }
         }
-        else if (msg.MessageId == 'UI_Hyperlink' && msg.Values.Url === 'app://open-mapping-panel') {
-            event.preventDefault();
+        else if (msg.MessageId == 'UI_Hyperlink' && msg.Values.Url.startsWith('app://open-mapping-panel')) {
             bind();
         }
     }
