@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+DiagramDigitization/DiagramDigitization.ConsoleApp/outputs

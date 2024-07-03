@@ -1,0 +1,3 @@
+[submodule "src/CppSharp"]
+	path = src/CppSharp
+	url = https://github.com/mono/CppSharp.git
