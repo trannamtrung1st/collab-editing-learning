@@ -8,8 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PDFiumCore" Version="128.0.6569" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
+    <None Update="_data\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IronPdf" Version="2024.7.6" />
+    <PackageReference Include="OpenCvSharp4.runtime.osx_arm64" Version="4.8.1-rc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\opencvsharp-main\src\OpenCvSharp\OpenCvSharp.csproj" />
+    <ProjectReference
+      Include="..\opencvsharp-main\src\OpenCvSharp.Extensions\OpenCvSharp.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
